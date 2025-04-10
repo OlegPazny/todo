@@ -73,8 +73,10 @@ $(document).ready(function() {
     // Обработчик для добавления задачи
     $('#taskForm').on('submit', function(e) {
         e.preventDefault();
+        
         $.post('./assets/api/create_task.php', $(this).serialize(), function(response) {
             alert('Задача добавлена!');
+            $('#taskForm')[0].reset();
         });
     });
 });
