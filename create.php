@@ -38,13 +38,15 @@ $projects = $db->query("SELECT `id`, `name` FROM `projects`")->fetch_all(MYSQLI_
                     </div>
 
                     <div class="mb-3">
-                        <label for="projects" class="form-label">Проект</label>
-                        <select name="project_id" class="form-select selectpicker projects" id="projectSelect" required>
-                        </select>
-                        <!-- Кнопка для добавления нового проекта -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProjectModal">
-                            Добавить новый проект
-                        </button>
+                        <div class="d-flex flex-column">
+                            <label for="projects" class="form-label">Проект</label>
+                            <select name="project_id" class="selectpicker projects mb-2 w-100" id="projectSelect" required>
+                            </select>
+                            <!-- Кнопка для добавления нового проекта -->
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProjectModal">
+                                Добавить новый проект
+                            </button>
+                        </div>
 
                         <!-- Модальное окно для добавления нового проекта -->
                         <div class="modal fade" id="addProjectModal" tabindex="-1" aria-labelledby="addProjectModalLabel" aria-hidden="true">
@@ -70,12 +72,14 @@ $projects = $db->query("SELECT `id`, `name` FROM `projects`")->fetch_all(MYSQLI_
                     </div>
 
                     <div class="mb-3">
-                        <label for="priority" class="form-label">Приоритет</label>
-                        <select class="form-select selectpicker" id="priority" name="priority" required>
-                            <option value="low">Низкий</option>
-                            <option value="medium">Средний</option>
-                            <option value="high">Высокий</option>
-                        </select>
+                        <div class="d-flex flex-column">
+                            <label for="priority" class="form-label">Приоритет</label>
+                            <select class="selectpicker w-100" id="priority" name="priority" required>
+                                <option value="low">Низкий</option>
+                                <option value="medium">Средний</option>
+                                <option value="high">Высокий</option>
+                            </select>
+                        </div>
                     </div>
 
                     <div class="mb-3">

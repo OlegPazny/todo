@@ -49,7 +49,7 @@ $(document).ready(function () {
                                         </select>
                                     </td>
                                     <td><span class="badge bg-${priorityColor(task.priority)}">${task.priority}</span></td>
-                                    <td>${task.deadline}</td>
+                                    <td>${task.deadline == null ? 'Без ограничений' : task.deadline}</td>
                                     <td>${task.assigned_by}</td>
                                     <td>${task.description}</td>
                                     </tr>`).join('')}
