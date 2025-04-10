@@ -42,10 +42,19 @@ if ($data) {
         $_SESSION['username']=$login;
         $_SESSION['password']=$password;
         $_SESSION['name']=$data['name'];
-        $response=[
-            'success'=>true
-        ];
-        echo json_encode($response);
+        if($login==="ssalina"||$login==="eglukhikh"||$login==="vkurnenkov"||$login==="obasalay"||$login==="vbasalai"){
+            $response=[
+                'success'=>true
+            ];
+            echo json_encode($response);
+        }else{
+            $response=[
+                'success'=>false,
+                'message'=>"Доступ к сервису для данной учетной записи запрещен."
+            ];
+            echo json_encode($response);
+            die();
+        }
     }else{
         $response=[
             'success'=>false,

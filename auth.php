@@ -29,7 +29,6 @@
                                 <input type="password" class="form-control" id="password" name="password" required>
                             </div>
                             <div id="error-message" class="text-danger mb-3" style="display: none;">
-                                Неверный логин или пароль.
                             </div>
                             <button type="submit" class="btn btn-primary w-100">Войти</button>
                         </form>
@@ -39,5 +38,6 @@
         </div>
     </div>
 </body>
+<script src="./assets/js/jquery/jquery.min.js"></script>
 <script src="./assets/js/auth.js"></script>
 </html>

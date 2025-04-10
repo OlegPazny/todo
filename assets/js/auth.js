@@ -22,6 +22,7 @@ document.getElementById('loginForm').addEventListener('submit', async function (
         } else {
             // Вывод сообщения об ошибке
             document.getElementById('error-message').style.display = 'block';
+            $("#error-message").text(result.message);
         }
     } catch (error) {
         console.error('Error:', error);
