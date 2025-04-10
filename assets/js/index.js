@@ -41,7 +41,13 @@ $(document).ready(function () {
                                 ${tasks.map(task => `
                                     <tr>
                                     <td>${task.title}</td>
-                                    <td><span class="badge bg-${statusColor(task.status)}">${task.status}</span></td>
+                                    <td>
+                                        <select class="form-select form-select-sm task-status-select" data-task-id="${task.id}">
+                                            <option value="new" ${task.status === 'new' ? 'selected' : ''}>Открыта</option>
+                                            <option value="pending" ${task.status === 'pending' ? 'selected' : ''}>В работе</option>
+                                            <option value="completed" ${task.status === 'completed' ? 'selected' : ''}>Завершена</option>
+                                        </select>
+                                    </td>
                                     <td><span class="badge bg-${priorityColor(task.priority)}">${task.priority}</span></td>
                                     <td>${task.deadline}</td>
                                     <td>${task.assigned_by}</td>
@@ -59,19 +65,30 @@ $(document).ready(function () {
         }
     });
 
-    function statusColor(status) {
-        return {
-            'новая': 'secondary',
-            'в процессе': 'info',
-            'завершена': 'success'
-        }[status] || 'light';
-    }
-
     function priorityColor(priority) {
         return {
-            'низкий': 'secondary',
-            'средний': 'warning',
-            'высокий': 'danger'
+            'low': 'secondary',
+            'medium': 'warning',
+            'high': 'danger'
         }[priority] || 'light';
     }
+
+    $(document).on('change', '.task-status-select', function () {
+        const newStatus = $(this).val();
+        const taskId = $(this).data('task-id');
+      
+        $.ajax({
+          url: './assets/api/update_task_status.php',
+          type: 'POST',
+          data: { task_id: taskId, status: newStatus },
+          success: function (response) {
+            console.log('Статус обновлён');
+          },
+          error: function (err) {
+            console.error('Ошибка обновления статуса', err);
+            alert('Ошибка при обновлении статуса');
+          }
+        });
+      });
+      
 });

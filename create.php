@@ -1,4 +1,8 @@
 <?php
+session_start();
+if ($_SESSION['loggedin'] == false) {
+    header("Location: ./auth.php");
+};
 require_once './assets/api/db_connect.php';
 $projects = $db->query("SELECT `id`, `name` FROM `projects`")->fetch_all(MYSQLI_ASSOC);
 ?>
@@ -53,7 +57,7 @@ $projects = $db->query("SELECT `id`, `name` FROM `projects`")->fetch_all(MYSQLI_
                                     <div class="modal-body">
                                         <div class="mb-3">
                                             <label for="newProjectName" class="form-label">Название проекта</label>
-                                            <input type="text" class="form-control" id="newProjectName" required>
+                                            <input type="text" class="form-control" id="newProjectName">
                                         </div>
                                     </div>
                                     <div class="modal-footer">
@@ -66,31 +70,17 @@ $projects = $db->query("SELECT `id`, `name` FROM `projects`")->fetch_all(MYSQLI_
                     </div>
 
                     <div class="mb-3">
-                        <label for="status" class="form-label">Статус</label>
-                        <select class="form-select selectpicker" id="status" name="status">
-                            <option>новая</option>
-                            <option>в процессе</option>
-                            <option>завершена</option>
-                        </select>
-                    </div>
-
-                    <div class="mb-3">
                         <label for="priority" class="form-label">Приоритет</label>
-                        <select class="form-select selectpicker" id="priority" name="priority">
-                            <option>низкий</option>
-                            <option>средний</option>
-                            <option>высокий</option>
+                        <select class="form-select selectpicker" id="priority" name="priority" required>
+                            <option value="low">Низкий</option>
+                            <option value="medium">Средний</option>
+                            <option value="high">Высокий</option>
                         </select>
                     </div>
 
                     <div class="mb-3">
                         <label for="deadline" class="form-label">Дедлайн</label>
-                        <input type="date" class="form-control" id="deadline" name="deadline" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="assigned_by" class="form-label">Кто назначил</label>
-                        <input type="text" class="form-control" id="assigned_by" name="assigned_by" required>
+                        <input type="date" class="form-control" id="deadline" name="deadline">
                     </div>
 
                     <div class="mb-3">

@@ -1,3 +1,9 @@
+<?php
+  session_start();
+  if($_SESSION['loggedin']==false){
+    header("Location: ./auth.php");
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

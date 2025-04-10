@@ -1,4 +1,13 @@
 $(document).ready(function() {
+    const deadlineInput = document.getElementById('deadline');
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+
+    const yyyy = tomorrow.getFullYear();
+    const mm = String(tomorrow.getMonth() + 1).padStart(2, '0');
+    const dd = String(tomorrow.getDate()).padStart(2, '0');
+
+    deadlineInput.min = `${yyyy}-${mm}-${dd}`;
     // Функция для загрузки проектов
     function loadProjects() {
         $.ajax({
